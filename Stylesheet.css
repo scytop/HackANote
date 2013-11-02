@@ -1,22 +1,22 @@
 body{
 	background: url(https://dl-web.dropbox.com/get/photos/wallpapers/linedpaper/linedpaper.png?w=AADe-foQypZkYcSQil88Pze8gXHOfVFM88FOVRBebc5I9A) repeat;
-	font:Helvetica,Verdana,sans-serif;
+	font-family:Helvetica,Verdana,sans-serif;
 }
 
 .Title{
         width:100%;
         margin-left: auto;
         margin-right: auto;
-        size: 36px;
+        font-size: 36px;
         color:#30D8F2;
-        font:"Courier New";
+        font-family:"Courier New";
 }
 
 .SubTitle{
 	width:100%;
 	margin-left:auto;
 	margin-right:auto;
-	size: 30px;
+	font-size: 26px;
 }
 
 
