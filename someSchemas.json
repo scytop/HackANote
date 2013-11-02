@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+	"Title" : "tasks",
+	"type" : "object",
+	"properties" : {
+		"taskID" : {"type":"interger"},
+		"groupID" : {"type" : "interger"},
+		"assignedUserID" : {"type": "interger"},
+		"taskName" : {"type" : "string"},
+		"taskDetails" : {"type": "string"},
+		"completed" : {"type" : "boolean"},
+		"dueDate" : {"type" : "interger"}
+	},
+	"required" : ["taskID", "assignedUserID", "taskName", "completed"]
+}
+
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+	"Title" : "groups",
+	"type" : "object",
+	"properties" : {
+		"groupID" : {"type": "interger"},
+		"groupName" : {"type" : "string"},
+		"userIDs" : {"type": "array"},
+		"taskIDs" : {"type" : "array"}
+	},
+	"required" : ["groupID", "groupName"]
+}
+
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+	"Title" : "users",
+	"type" : "object",
+	"properties" : {
+		"userID" : {"type": "interger"},
+		"userName" : {"type" : "string"},
+		"userGroups" : {"type": "array"}
+	},
+	"required": ["userID, UserName"]
+
+}
