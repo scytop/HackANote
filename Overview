@@ -1,0 +1,33 @@
+Overview
+	Menu
+		New Task
+			<Add a new task>
+		All Tasks
+			<Display All Tasks>
+		Daily View
+			<Display all tasks for that day>
+			<Display things due <= 2 days>
+
+		Weekly View
+			<Display all weekly tasks>
+		Monthly View
+			<Display all monthly tasks>
+		Groups
+			<create a new group>
+
+
+Needed things:
+	Object creation (Tasks: String, Int Due date), (Events: String, Int Due date), (Notes: String, date created), 
+		(Group Task: String (name), person working on it, due date.)
+
+	Task Creation (use objects, maybe a map?  String: int, where int is the date due)
+	Actual UI (Design, clickable stuff, etc)
+	Working back button
+	Groups(This is the big one)
+		>Needs to be a scalable object
+		>can hold events, as well as sub-events, as well as discriptions, etc.
+		>Holds multiple Group objects
+			>Each Group object contains
+				>Every task needed to be done (string for tasks, name of person doing it, due date)
+				>Every person in the project(names/IDs)
+		
