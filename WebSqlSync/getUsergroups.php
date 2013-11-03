@@ -23,7 +23,7 @@ if ($CLnum_rows){
 	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {
 		$newrec = $clientData['data']['users'][$i];  
-		$userID = $newrec['userID']; $userID = mysql_real_escape_string($userID);
+		$groupID = $newrec['groupID']; $groupID = mysql_real_escape_string($groupID);
 		$id = $newrec['id']; $id = mysql_real_escape_string($id);
 		$firstName = $newrec['firstName']; $firstName = mysql_real_escape_string($firstName);
 		$lastName = $newrec['lastName']; $lastName = mysql_real_escape_string($lastName);

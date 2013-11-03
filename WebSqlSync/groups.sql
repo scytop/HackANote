@@ -29,6 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS 'groups' (
   'groupID' int(9) NOT NULL,
   'groupName' text NOT NULL,
+  'userIDs' text,
+  'taskIDs' text,
   'last_sync_date' timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  ('groupID')
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;

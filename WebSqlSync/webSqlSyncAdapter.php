@@ -41,6 +41,7 @@ function getServerData($clientLastSyncDate){		//get the modified data from the s
 	// Define here the tables to sync Server side param1 is the webSql table name and param2 is the MySQL table name
 	$tablesToSync = array(
 		array( "tableNameWebSql" => 'users',		"tableName_MySql" => 'users',		"getQueryFile" => 'getUsergroups.php'),
+		array( "tableNameWebSql" => 'groups',        "tableName_MySql" => 'groups',      "getQueryFile" => 'getUsergroups.php')
 	);
 
 	$getServerData = array();
