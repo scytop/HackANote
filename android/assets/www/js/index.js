@@ -36,27 +36,12 @@ var app = {
         app.receivedEvent('deviceready');
         document.addEventListener('online', this.initializeDatabase, false);
     },
-    initializeDatabase: function() {
-        TABLES_TO_SYNC = [
-            {tableName: 'user', idName: 'userID'},
-            {tableName: 'event', idName: 'eventID'} //if idName not specified, it will assume that it's "id"
-        ];
-        sync_info: {//Example of user info
-            userEmail: 'test@gmail.com',//the user mail is not always here
-            device_uuid: 'UNIQUE_DEVICE_ID_287CHBE873JB',//if no user mail, rely on the UUID
-            lastSyncDate: 0,
-            device_version: '5.1',
-            device_name: 'test navigator',
-            userAgent: navigator.userAgent,
-        },
-        DBSYNC.initSync(TABLES_TO_SYNC, notelistDB, sync_info, 'http://localhost:3306', callBackEndInit);
-    }
     updateDatabase: function() {
         DBSYNC.syncNow(callBackSyncProgress, function(result) {
             if (result.syncOK === true) {
                 //Synchronized successfully
-     }
-});
+            }
+        });
     }
     // Update DOM on a Received Event
     receivedEvent: function(id) {
