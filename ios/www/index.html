@@ -27,10 +27,28 @@
     </head>
     <body>
         <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <div class="card">
+                <select id="scope">
+                    <option value="day">TODAY</option>
+                    <option value="week">WEEK</option>
+                    <option value="month">MONTH</option>
+                    <option value="all">ALL</option>
+                </select>
+                <button class="add">+</button>
+                <ul class="tasks">
+                    <li class="task overdue">
+                        <h3>Due 11/1/2013</h3>
+                        <h2>Finish the project</h2>
+                    </li>
+                    <li class="task done">
+                        <h3>Due 11/5/2013</h3>
+                        <h2>Purchase several energy drinks</h2>
+                    </li>
+                    <li class="task">
+                        <h3>Due 11/6/2013</h3>
+                        <h2>Finish the project for real</h2>
+                    </li>
+                </ul>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
