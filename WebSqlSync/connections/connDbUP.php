@@ -14,9 +14,9 @@
 	$dbuname = "FriendNote";
 	$dbpass  = "Dickbutt1!";
 	
-$connect = mysql_pconnect($dbhost, $dbuname, $dbpass) or die("Cannot connect to the server $server" + mysql_error()); 
+$connect = mysqli_connect($dbhost, $dbuname, $dbpass) or die("Cannot connect to the server $server" + mysql_error()); 
 //$connect = mysql_connect ($dbhost, $dbuname, $dbpass) or header("Location: ExpertUPDown.html"); //die(mysql_error());
-$db= mysql_select_db($dbname) or die("Could not select database"+ mysql_error());
+$db= mysqli_select_db($connect, $dbname) or die("Could not select database"+ mysql_error());
 
 mysql_set_charset('utf8', $connect);	
 ?>

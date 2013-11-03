@@ -9,7 +9,7 @@ if ($CLnum_rows){*/
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$insert_value = "(".$groupID.", '".$groupName."', '".$userID"', "", '".$currentDateTime."')";
+	$insert_value = "(".$groupID.", "."'".$groupName."'".", "."'".$userID."'".", ". "". ", "."'".$currentDateTime."')";
 	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value; 
 	mysql_query($db, $sqlInsert);
 }

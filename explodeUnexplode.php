@@ -19,4 +19,26 @@ function unexplodeString($groupArray)
 		//make sure to set this equal to a variable, e.g. $variable = unexplodeString($groupArray)
 	return $toBecomeString;
 }
+
+
+
+
+
+// function giveDaily($userID)
+// {
+// 	//returns an array that gives the tasks due that day.
+// 	$today = getdate();
+// 	$day = $today["mday"];
+// 	$month = $today["mon"];
+// 	$year = $today["year"];
+// 	//get all tasks that the user is assigned to
+// 	$retrieve_value = "SELECT dueDate FROM tasks WHERE userID = ". $userID;
+// 	$variablename = array();
+// 	$variablename = mysql_query($retrieve_value)or die(mysql_error());
+	
+// 	//TODO: if date is ==, display. 
+// }
+
+
+
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-public function setUser($userID, $username) {
+function setUser($userID, $username) {
 /*$CLnum_rows = 1;
 if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
@@ -9,12 +9,13 @@ if ($CLnum_rows){*/
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
-	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
-		mysql_query($db, $sqlInsert);
+	$insert_value = "('" .$userID."'". ", ". "'". $username."'". ","."NULL".", '" .$currentDateTime. "')";
+	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES " . $insert_value;
+	echo $sqlInsert;
+		mysqli_query($db, $sqlInsert) or die(mysql_error());
 }
 
-public function groupInsert($userID, $groupID) {
+function groupInsert($userID, $groupID) {
 	require_once('connections/connDbUP.php');
 	$currentDateTime =  date("Y-m-d H:i:s");
 
@@ -28,7 +29,7 @@ public function groupInsert($userID, $groupID) {
 	$retrive_value2 = "SELECT username FROM users WHERE userID = ". $userID;
 	$username = mysql_query($retrieve_value2) or die(mysql_error());
 
-	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
+	$insert_value = "(" .$userID. ", ". "'". $username."'". ","." ".", " .$currentDateTime. "')";
 	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
 		mysql_query($db, $sqlInsert);
 }
@@ -81,4 +82,14 @@ public function groupInsert($userID, $groupID) {
 		}
 	}	//end for
 }	//end if ($CLnum_rows)*/
+
+
+
+
+
 ?>
+<head>
+<title>Thitle goes here</title>
+</head>
+<body>
+</body>
