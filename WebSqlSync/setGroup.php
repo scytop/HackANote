@@ -10,7 +10,8 @@ if ($CLnum_rows){*/
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
 	$insert_value = "(".$groupID.", '".$groupName."', '".$userID"', "", '".$currentDateTime."')";
-	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value;
+	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value; 
+	mysql_query($db, $sqlInsert);
 }
 
 public function createNewGroup($groupName, $userID){
@@ -25,7 +26,7 @@ public function createNewGroup($groupName, $userID){
             $password = "Dickbutt1!";
             $usertable = "groups";        
             //Connecting to your database
-            mysql_connect($hostname, $username, $password) OR DIE ("Unable to 
+            $theDB = mysql_connect($hostname, $username, $password) OR DIE ("Unable to 
             connect to database! Please try again later.");
             mysql_select_db($dbname);
             //generate unique taskID: 9 digit number with a nonzero number at 9th digit
@@ -69,6 +70,7 @@ public function userInsert($groupID, $userID) {
 
 	$insert_value = "(".$groupID.", '".$groupName."', '".$userID"', "", '".$currentDateTime."')";
 	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value;
+		mysql_query($db, $sqlInsert);
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {

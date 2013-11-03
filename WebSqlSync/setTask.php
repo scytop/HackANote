@@ -14,6 +14,7 @@ if ($CLnum_rows){*/
 		'".$taskDetails."', '".$checked."', '".$dueDate."', '".$last_sync_date."')";
 	$sqlInsert = "INSERT INTO tasks (taskID, groupID, userID, taskName, taskDetails,
 		checked, dueDate, last_sync_date) VALUES ".$insert_value;
+mysql_query($db, $sqlInsert);
 }
 
 // USE THIS FUNCTION TO ADD A TASK

@@ -11,6 +11,7 @@ if ($CLnum_rows){*/
 
 	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
 	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+		mysql_query($db, $sqlInsert);
 }
 
 public function groupInsert($userID, $groupID) {
@@ -29,6 +30,7 @@ public function groupInsert($userID, $groupID) {
 
 	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
 	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+		mysql_query($db, $sqlInsert);
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {
