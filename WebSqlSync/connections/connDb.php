@@ -9,10 +9,10 @@
 ///header('Content-type: application/json');
 //$id = $_GET['id'];	// usefull if we need a specific record
 
-	$dbhost  = "localhost";
-	$dbname  = "__________";
-	$dbuname = "__________";
-	$dbpass  = "__________";
+	$dbhost  = "FriendNote.db.11531226.hostedresource.com";
+	$dbname  = "FriendNote";
+	$dbuname = "FriendNote";
+	$dbpass  = "Dickbutt1!";
 	
 $connect = mysql_pconnect($dbhost, $dbuname, $dbpass) or die("Cannot connect to the server $server" + mysql_error()); 
 //$connect = mysql_connect ($dbhost, $dbuname, $dbpass) or header("Location: ExpertUPDown.html"); //die(mysql_error());
