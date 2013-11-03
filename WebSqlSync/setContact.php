@@ -1,24 +1,12 @@
 <?php
-/*
- * Name  : setContact.php	called by: webSqlSyncAdapter.php
- * Goal  : To INSERT and UPDATE in Contact table in the sync process with a JSON coming from the webSqlApp 
- * By (c): Alain Beauseigle from AffairesUP inc.
- * Date  : 2013-10-19
- * ToDo  : Test if the json is working with accents
- * ToDo  : Activate the authenetication
- * Status: It works, it update the data
- * ToTest: Use http://www.affairesup.com/webSqlApp/setContactTest.php
-*/
 
-//include "loginCheck.php";
 $CLnum_rows = 1;
 if ($CLnum_rows){
 	require_once('connections/connDbUP.php');
-	$currentDateTime =  date("Y-m-d H:i:s");				// usefull for the unit test of this function
-	$clientData = $handler -> clientData;
+	$currentDateTime =  date("Y-m-d H:i:s");
 
-	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;	// It gives a 10 digits Unix dateTime format
-	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);	// to show the date in YYYY-MM-DD HH:MM:SS format (MySQL datetime format). Result: 2007-12-20 14:00:00
+	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
+	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
 	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {
@@ -31,7 +19,7 @@ if ($CLnum_rows){
 		//if (ID == -1 ) do an INSERT INTO MySQL
 		//if (ID <> -1 AND last_sync_date < clientRecLastSyncDate) do an UPDATE INTO MySQL
 		//if (ID <> -1 AND last_sync_date > clientRecLastSyncDate) do nothing because MySQL is more recent
-		if ($ContactID == -1) {
+		if ($userID == -1) {
 			$insert_value 	 = "(" .$userID. ", '".$username."', " .$userGroups. ", '" .$currentDateTime. "')";
 			$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
 			//echo $sqlInsert, "<br>", "<br>";
