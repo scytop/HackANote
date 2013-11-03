@@ -1,6 +1,6 @@
 <?php
 
-public function setGroup($groupID, $groupName) {
+public function setGroup($groupID, $groupName, $userID) {
 /*$CLnum_rows = 1;
 if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
@@ -9,26 +9,26 @@ if ($CLnum_rows){*/
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$insert_value = "(" .$groupID. ", '".$groupName."', "", " .$currentDateTime. "')";
-	$sqlInsert = "INSERT INTO groups (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+	$insert_value = "(".$groupID.", '".$groupName."', '".$userID"', "", '".$currentDateTime."')";
+	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value;
 }
 
-public function groupInsert($userID, $groupID) {
+public function userInsert($groupID, $userID) {
 	require_once('connections/connDbUP.php');
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$retrive_value = "SELECT userGroups FROM users WHERE userID = ". $userID;
+	$retrive_value = "SELECT userIDs FROM groups WHERE groupID = ". $groupID;
 	$group_retrieve = mysql_query($retrieve_value) or die(mysql_error());
-	$userGroups = $group_retrieve . strval($groupID) . ",";
+	$userIDs = $group_retrieve . strval($userID) . ",";
 
-	$retrive_value = "SELECT username FROM users WHERE userID = ". $userID;
-	$username = mysql_query($retrieve_value) or die(mysql_error());
+	$retrive_value2 = "SELECT groupName FROM groups WHERE groupID = ". $groupID;
+	$groupName = mysql_query($retrieve_value2) or die(mysql_error());
 
-	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
-	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+	$insert_value = "(".$groupID.", '".$groupName."', '".$userID"', "", '".$currentDateTime."')";
+	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value;
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {

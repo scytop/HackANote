@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS 'tasks' (
-  'ID' int(9) NOT NULL,
+  'taskID' int(9) NOT NULL,
   'groupID' int(9) NOT NULL,
   'userID' int(9) NOT NULL,
   'taskName' text NOT NULL,
@@ -35,5 +35,5 @@ CREATE TABLE IF NOT EXISTS 'tasks' (
   'checked' bool NOT NULL,
   'dueDate' text,
   'last_sync_date' timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  PRIMARY KEY  ('userID')
+  PRIMARY KEY  ('taskID')
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;

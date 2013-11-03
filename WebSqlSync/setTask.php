@@ -1,6 +1,7 @@
 <?php
 
-public function setTask($taskID, $username) {
+public function setTask($taskID, $groupID, $userID, $taskName, $taskDetails, $checked,
+	$dueDate) {
 /*$CLnum_rows = 1;
 if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
@@ -9,26 +10,26 @@ if ($CLnum_rows){*/
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
-	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+	$insert_value = "(".$taskID.", '".$groupID."', ".$userID."',  ".$taskName."', 
+		'".$taskDetails."', '".$checked."', '".$dueDate."', '".$last_sync_date."')";
+	$sqlInsert = "INSERT INTO tasks (taskID, groupID, userID, taskName, taskDetails,
+		checked, dueDate, last_sync_date) VALUES ".$insert_value;
 }
 
-public function groupInsert($userID, $groupID) {
+public function updateTask($taskID, $groupID, $userID, $taskName, $taskDetails, $checked, $dueDate) {
 	require_once('connections/connDbUP.php');
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$retrive_value = "SELECT userGroups FROM users WHERE userID = ". $userID;
-	$group_retrieve = mysql_query($retrieve_value) or die(mysql_error());
-	$userGroups = $group_retrieve . strval($groupID) . ",";
+	$retrive_value = "SELECT groupID FROM tasks WHERE taskID = ". $taskID;
+	$groupID = mysql_query($retrieve_value) or die(mysql_error());
 
-	$retrive_value = "SELECT username FROM users WHERE userID = ". $userID;
-	$username = mysql_query($retrieve_value) or die(mysql_error());
-
-	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
-	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+	$insert_value = "(".$taskID.", '".$groupID."', ".$userID."',  ".$taskName."', 
+		'".$taskDetails."', '".$checked."', '".$dueDate."', '".$last_sync_date."')";
+	$sqlInsert = "INSERT INTO tasks (taskID, groupID, userID, taskName, taskDetails,
+		checked, dueDate, last_sync_date) VALUES ".$insert_value;
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {

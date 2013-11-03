@@ -24,8 +24,8 @@ public function groupInsert($userID, $groupID) {
 	$group_retrieve = mysql_query($retrieve_value) or die(mysql_error());
 	$userGroups = $group_retrieve . strval($groupID) . ",";
 
-	$retrive_value = "SELECT username FROM users WHERE userID = ". $userID;
-	$username = mysql_query($retrieve_value) or die(mysql_error());
+	$retrive_value2 = "SELECT username FROM users WHERE userID = ". $userID;
+	$username = mysql_query($retrieve_value2) or die(mysql_error());
 
 	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
 	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
