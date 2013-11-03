@@ -62,7 +62,7 @@ public function userInsert($groupID, $userID) {
 
 	$retrive_value = "SELECT userIDs FROM groups WHERE groupID = ". $groupID;
 	$group_retrieve = mysql_query($retrieve_value) or die(mysql_error());
-	$userIDs = $group_retrieve . strval($userID) . ",";
+	$userIDs = $group_retrieve . $userID . ",";
 
 	$retrive_value2 = "SELECT groupName FROM groups WHERE groupID = ". $groupID;
 	$groupName = mysql_query($retrieve_value2) or die(mysql_error());

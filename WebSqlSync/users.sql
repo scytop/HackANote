@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS 'users' (
-  'userID' int(9) NOT NULL,
+  'userID' text NOT NULL,
   'username' text NOT NULL,
   'userGroups' text,
   'last_sync_date' timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,

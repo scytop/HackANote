@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS 'tasks' (
   'taskID' int(9) NOT NULL,
   'groupID' int(9) NOT NULL,
-  'userID' int(9) NOT NULL,
+  'userID' text NOT NULL,
   'taskName' text NOT NULL,
   'taskDetails' text,
   'checked' bool NOT NULL,
