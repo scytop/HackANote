@@ -4,6 +4,7 @@ function setUser($userID, $username) {
 /*$CLnum_rows = 1;
 if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
+	$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
@@ -11,12 +12,19 @@ if ($CLnum_rows){*/
 
 	$insert_value = "('" .$userID."'". ", ". "'". $username."'". ","."NULL".", '" .$currentDateTime. "')";
 	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES " . $insert_value;
-	echo $sqlInsert;
-		mysqli_query($db, $sqlInsert) or die(mysql_error());
+	$ok = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+	if (!$ok)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
+	sqlite_close($dbhandle);
 }
 
 function groupInsert($userID, $groupID) {
 	require_once('connections/connDbUP.php');
+	$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
@@ -31,7 +39,14 @@ function groupInsert($userID, $groupID) {
 
 	$insert_value = "(" .$userID. ", ". "'". $username."'". ","." ".", " .$currentDateTime. "')";
 	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
-		mysql_query($db, $sqlInsert);
+	ok = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+	if (!$ok)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
+	sqlite_close($dbhandle);
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {

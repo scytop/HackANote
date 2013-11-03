@@ -5,6 +5,7 @@ public function setTask($taskID, $groupID, $userID, $taskName, $taskDetails, $ch
 /*$CLnum_rows = 1;
 if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
+	$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
@@ -14,7 +15,14 @@ if ($CLnum_rows){*/
 		'".$taskDetails."', '".$checked."', '".$dueDate."', '".$last_sync_date."')";
 	$sqlInsert = "INSERT INTO tasks (taskID, groupID, userID, taskName, taskDetails,
 		checked, dueDate, last_sync_date) VALUES ".$insert_value;
-mysql_query($db, $sqlInsert);
+	$ok = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+	if (!$ok)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
+	sqlite_close($dbhandle);
 }
 
 // USE THIS FUNCTION TO ADD A TASK
@@ -33,11 +41,18 @@ public function createNewTask($taskName, $taskDetails = "", $userID, $groupID = 
             //Connecting to your database
             mysql_connect($hostname, $username, $password) OR DIE ("Unable to 
             connect to database! Please try again later.");
+            $dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
             mysql_select_db($dbname);
             //generate unique taskID: 9 digit number with a nonzero number at 9th digit
             //should also be even.  
             $query = "SELECT * FROM $usertable";
-            $results = mysql_query($query);
+            $results = sqlite_exec($dbhandle, $query, $error);
+
+            if (!$results)
+			   die("Cannot execute query. $error");
+
+			echo "Database Friends created successfully";
+			
             $myfield = "taskID"
             $currentMax = 100000000;
 
@@ -55,6 +70,8 @@ public function createNewTask($taskName, $taskDetails = "", $userID, $groupID = 
             //this ensures a unique taskID
             //0 group ID represents self
             setTask($newTaskID, $groupID, $userID, $taskName, $taskDetails, false, $dueDate);
+
+            sqlite_close($dbhandle);
 }
 
 
@@ -67,6 +84,7 @@ public function createNewTask($taskName, $taskDetails = "", $userID, $groupID = 
 
 public function updateTask($taskID, $groupID, $userID, $taskName, $taskDetails, $checked, $dueDate) {
 	require_once('connections/connDbUP.php');
+	$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
@@ -79,6 +97,14 @@ public function updateTask($taskID, $groupID, $userID, $taskName, $taskDetails, 
 		'".$taskDetails."', '".$checked."', '".$dueDate."', '".$last_sync_date."')";
 	$sqlInsert = "INSERT INTO tasks (taskID, groupID, userID, taskName, taskDetails,
 		checked, dueDate, last_sync_date) VALUES ".$insert_value;
+	$ok = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+	if (!$ok)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
+	sqlite_close($dbhandle);
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {

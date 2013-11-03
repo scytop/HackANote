@@ -25,8 +25,16 @@ if ($CLnum_rows){
 		$userID = $newrec['userID']; $userID = mysql_real_escape_string($userID);*/
 	
 		require_once('connections/connDbUP.php');
+		$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 		$groupSQL = "SELECT userGroups FROM users WHERE userID = ". $userID;
-		$groupString = mysql_query($groupSQL) or die(mysql_error());
+		$groupString = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+		if (!$groupString)
+		   die("Cannot execute query. $error");
+
+		echo "Database Friends created successfully";
+
+		sqlite_close($dbhandle);
 }
 /*		//if (ID == -1 ) do an INSERT INTO MySQL
 		//if (ID <> -1 AND last_sync_date < clientRecLastSyncDate) do an UPDATE INTO MySQL

@@ -4,6 +4,7 @@ public function setGroup($groupID, $groupName, $userID) {
 /*$CLnum_rows = 1;
 if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
+	$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
@@ -11,7 +12,14 @@ if ($CLnum_rows){*/
 
 	$insert_value = "(".$groupID.", "."'".$groupName."'".", "."'".$userID."'".", ". "". ", "."'".$currentDateTime."')";
 	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value; 
-	mysql_query($db, $sqlInsert);
+	$ok = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+	if (!$ok)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
+	sqlite_close($dbhandle);
 }
 
 public function createNewGroup($groupName, $userID){
@@ -26,18 +34,25 @@ public function createNewGroup($groupName, $userID){
             $password = "Dickbutt1!";
             $usertable = "groups";        
             //Connecting to your database
-            $theDB = mysql_connect($hostname, $username, $password) OR DIE ("Unable to 
+            $theDB = mysqli_connect($hostname, $username, $password) OR DIE ("Unable to 
             connect to database! Please try again later.");
-            mysql_select_db($dbname);
+            $dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
+            mysqli_select_db($dbname);
             //generate unique taskID: 9 digit number with a nonzero number at 9th digit
             //should also be odd.  
             $query = "SELECT * FROM $usertable";
-            $results = mysql_query($query);
+            $results = sqlite_exec($dbhandle, $query, $error);
+
+			if (!$results)
+			   die("Cannot execute query. $error");
+
+			echo "Database Friends created successfully";
+
             $myfield = "groupID"
             $currentMax = 100000001;
 
             if($results){
-            	while ($row = mysql_fetch_array($results)){
+            	while ($row = mysqli_fetch_array($results)){
             		$tempTaskID = $row["$myfield"];
             		if($tempTaskID > $currentMax)
             		{
@@ -51,18 +66,27 @@ public function createNewGroup($groupName, $userID){
             //this ensures a unique taskID
             //0 group ID represents self
             setGroup($newGroupID, $groupName, $username);
+
+            sqlite_close($dbhandle);
 }
 
 
 public function userInsert($groupID, $userID) {
 	require_once('connections/connDbUP.php');
+	$dbhandle = sqlite_open('FriendNote.db.11531226.hostedresource.com', 0666, $error);
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
 	$retrive_value = "SELECT userIDs FROM groups WHERE groupID = ". $groupID;
-	$group_retrieve = mysql_query($retrieve_value) or die(mysql_error());
+	$group_retrieve = sqlite_exec($dbhandle, $retrieve_value, $error);
+
+	if (!$group_retrieve)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
 	$userIDs = $group_retrieve . $userID . ",";
 
 	$retrive_value2 = "SELECT groupName FROM groups WHERE groupID = ". $groupID;
@@ -70,7 +94,14 @@ public function userInsert($groupID, $userID) {
 
 	$insert_value = "(".$groupID.", '".$groupName."', '".$userID"', "", '".$currentDateTime."')";
 	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value;
-		mysql_query($db, $sqlInsert);
+	$ok = sqlite_exec($dbhandle, $sqlInsert, $error);
+
+	if (!$ok)
+	   die("Cannot execute query. $error");
+
+	echo "Database Friends created successfully";
+
+	sqlite_close($dbhandle);
 }
 /*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {

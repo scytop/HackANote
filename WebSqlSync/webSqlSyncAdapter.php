@@ -26,7 +26,7 @@ function myJob($handler){
 	$clientLastSyncDate = $handler -> clientData['info']['lastSyncDate']/1000;	// It gives a 10 digits unix date time
 	//$clientLastSyncDate= $clientData['info']['lastSyncDate']/1000;	// It gives a 10 digits unix date time
 
-	require_once('setContact.php');	// With the JSON, it does many INSERTs or UPDATEs to MySQL following some conditions
+	require_once('setUser.php');	// With the JSON, it does many INSERTs or UPDATEs to MySQL following some conditions
 
 	// My job is to get all the table data from the server and send a json to client
 	$handler -> reply(true,"this is a positive reply", getServerData($clientLastSyncDate));	// with a dynamic array coming from a MySQL query //function reply($status,$message,$data)
@@ -40,8 +40,9 @@ function getServerData($clientLastSyncDate){		//get the modified data from the s
 	// this is a comment are you reading this?????
 	// Define here the tables to sync Server side param1 is the webSql table name and param2 is the MySQL table name
 	$tablesToSync = array(
-		array( "tableNameWebSql" => 'users',		"tableName_MySql" => 'users',		"getQueryFile" => 'getUsergroups.php'),
-		array( "tableNameWebSql" => 'groups',        "tableName_MySql" => 'groups',      "getQueryFile" => 'getUsergroups.php')
+		array( "tableNameWebSql" => 'users',		"tableName_MySql" => 'users',		"getQueryFile" => 'setUser.php'),
+		array( "tableNameWebSql" => 'groups',        "tableName_MySql" => 'groups',      "getQueryFile" => 'setGroup.php'),
+		array( "tableNameWebSql" => 'tasks',		"tableName_MySql" => 'tasks',		"getQueryFile" => 'setTasks.php')
 	);
 
 	$getServerData = array();
