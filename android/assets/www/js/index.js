@@ -34,15 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        document.addEventListener('online', this.initializeDatabase, false);
     },
-    updateDatabase: function() {
-        DBSYNC.syncNow(callBackSyncProgress, function(result) {
-            if (result.syncOK === true) {
-                //Synchronized successfully
-            }
-        });
-    }
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
