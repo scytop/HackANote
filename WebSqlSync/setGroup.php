@@ -13,6 +13,46 @@ if ($CLnum_rows){*/
 	$sqlInsert = "INSERT INTO groups (groupID, groupName, userIDs, taskIDs, last_sync_date) VALUES ".$insert_value;
 }
 
+public function createNewGroup($groupName, $userID){
+	//used for when you need to create a group
+            //Variables for connecting to your database.
+            //These variable values come from your hosting account.
+            $hostname = "FriendNote.db.11531226.hostedresource.com";
+            $username = "FriendNote";
+            $dbname = "FriendNote";
+
+            //These variable values need to be changed by you before deploying
+            $password = "Dickbutt1!";
+            $usertable = "groups";        
+            //Connecting to your database
+            mysql_connect($hostname, $username, $password) OR DIE ("Unable to 
+            connect to database! Please try again later.");
+            mysql_select_db($dbname);
+            //generate unique taskID: 9 digit number with a nonzero number at 9th digit
+            //should also be odd.  
+            $query = "SELECT * FROM $usertable";
+            $results = mysql_query($query);
+            $myfield = "groupID"
+            $currentMax = 100000001;
+
+            if($results){
+            	while ($row = mysql_fetch_array($results)){
+            		$tempTaskID = $row["$myfield"];
+            		if($tempTaskID > $currentMax)
+            		{
+            			$currentMax = $tempTaskID;
+            		}
+            	}
+            }
+            //finds largest current ID, adds 2
+            $currentMax += 2;
+            $newGroupID = $currentMax;
+            //this ensures a unique taskID
+            //0 group ID represents self
+            setGroup($newGroupID, $groupName, $username);
+}
+
+
 public function userInsert($groupID, $userID) {
 	require_once('connections/connDbUP.php');
 	$currentDateTime =  date("Y-m-d H:i:s");

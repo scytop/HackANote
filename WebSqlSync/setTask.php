@@ -18,7 +18,7 @@ if ($CLnum_rows){*/
 
 // USE THIS FUNCTION TO ADD A TASK
 //Group ID and taskDetails arn't needed.
-function createNewTaskSelf($taskName, $taskDetails = "", $userID, $groupID = 0, $dueDate){
+public function createNewTask($taskName, $taskDetails = "", $userID, $groupID = 0, $dueDate){
 	//used for when you need to create a task for yourself, not within a group
             //Variables for connecting to your database.
             //These variable values come from your hosting account.
@@ -34,7 +34,7 @@ function createNewTaskSelf($taskName, $taskDetails = "", $userID, $groupID = 0, 
             connect to database! Please try again later.");
             mysql_select_db($dbname);
             //generate unique taskID: 9 digit number with a nonzero number at 9th digit
-            //should also be odd.  
+            //should also be even.  
             $query = "SELECT * FROM $usertable";
             $results = mysql_query($query);
             $myfield = "taskID"
