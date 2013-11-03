@@ -37,11 +37,10 @@ function myJob($handler){
 }
 
 function getServerData($clientLastSyncDate){		//get the modified data from the server using an associative array
-
+	// this is a comment are you reading this?????
 	// Define here the tables to sync Server side param1 is the webSql table name and param2 is the MySQL table name
 	$tablesToSync = array(
 		array( "tableNameWebSql" => 'users',		"tableName_MySql" => 'users',		"getQueryFile" => 'getUsergroups.php'),
-		array( "tableNameWebSql" => 'Unites',		"tableName_MySql" => 'RN_Unite',		"getQueryFile" => 'getModifiedUnit.php')
 	);
 
 	$getServerData = array();
