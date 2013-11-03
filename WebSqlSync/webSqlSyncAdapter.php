@@ -40,11 +40,7 @@ function getServerData($clientLastSyncDate){		//get the modified data from the s
 
 	// Define here the tables to sync Server side param1 is the webSql table name and param2 is the MySQL table name
 	$tablesToSync = array(
-		array( "tableNameWebSql" => 'Contacts',		"tableName_MySql" => 'Contacts',		"getQueryFile" => 'getModifiedContact.php'),
-	//	array( "tableNameWebSql" => 'Activites',	"tableName_MySql" => 'RN_Activite',		"getQueryFile" => 'getModifiedActivity.php'),
-	//	array( "tableNameWebSql" => 'Projets',		"tableName_MySql" => 'RN_Projet',		"getQueryFile" => 'getModifiedProject.php'),
-	//	array( "tableNameWebSql" => 'Ressources',	"tableName_MySql" => 'RN_Ressource',	"getQueryFile" => 'getModifiedRessource.php'),
-	//	array( "tableNameWebSql" => 'Categories',	"tableName_MySql" => 'RN_Categorie',	"getQueryFile" => 'getModifiedCategory.php'),
+		array( "tableNameWebSql" => 'users',		"tableName_MySql" => 'users',		"getQueryFile" => 'getUsergroups.php'),
 		array( "tableNameWebSql" => 'Unites',		"tableName_MySql" => 'RN_Unite',		"getQueryFile" => 'getModifiedUnit.php')
 	);
 
