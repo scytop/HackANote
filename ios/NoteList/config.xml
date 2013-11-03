@@ -112,5 +112,6 @@
     </feature>
     <!-- Deprecated plugins element. REmove in 3.0 -->
     <plugins>
+        <plugin name="org.apache.cordova.facebook.Connect" value="FacebookConnectPlugin" />
     </plugins>
 </widget>
