@@ -29,10 +29,9 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div data-role="page" id="home" class="card">
+        <div data-role="page" id="login" class="card">
             <div data-role="content">
-                <script type="text/javascript" src="js/phonegap-facebook-plugin/www/cdv-plugin-fb-connect.js"></script>
-                <script type="text/javascript" src="js/phonegap-facebook-plugin/www/facebook-js-sdk.js"></script>
+                <script type="text/javascript" src="facebook-js-sdk.js"></script>
                 <h1>TASKAPP (name subject to change)</h1>
                 <div id="fb-root"><a href="#home" onclick="fb_login();"><button class="login">LOG IN WITH FACEBOOK</button></a></div>
             </div>
@@ -76,9 +75,15 @@
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
         <script type="text/javascript">
             app.initialize();
             $(document).ready(function() {
+                FB.getLoginStatus(function(response) {
+                    if (response.status.toString().indexOf("connected")>-1) {
+                        $.mobile.changePage("#home");
+                    }
+                });
                 $("#home").swipeleft(function() {
                     $.mobile.changePage("#page1",{transition:"slide"});
                 });
