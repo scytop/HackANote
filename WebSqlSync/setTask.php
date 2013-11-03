@@ -1,14 +1,36 @@
 <?php
 
-$CLnum_rows = 1;
-if ($CLnum_rows){
+public function setTask($taskID, $username) {
+/*$CLnum_rows = 1;
+if ($CLnum_rows){*/
 	require_once('connections/connDbUP.php');
 	$currentDateTime =  date("Y-m-d H:i:s");
 
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
 
-	$count = count($clientData['data']['users']);
+	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
+	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+}
+
+public function groupInsert($userID, $groupID) {
+	require_once('connections/connDbUP.php');
+	$currentDateTime =  date("Y-m-d H:i:s");
+
+	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;
+	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);
+
+	$retrive_value = "SELECT userGroups FROM users WHERE userID = ". $userID;
+	$group_retrieve = mysql_query($retrieve_value) or die(mysql_error());
+	$userGroups = $group_retrieve . strval($groupID) . ",";
+
+	$retrive_value = "SELECT username FROM users WHERE userID = ". $userID;
+	$username = mysql_query($retrieve_value) or die(mysql_error());
+
+	$insert_value = "(" .$userID. ", '".$username."', "", " .$currentDateTime. "')";
+	$sqlInsert = "INSERT INTO users (userID, username, userGroups, last_sync_date) VALUES ".$insert_value;
+}
+/*	$count = count($clientData['data']['users']);
 	for ($i=0; $i < $count; $i++) {
 		$newrec = $clientData['data']['users'][$i];  
 		$userID = $newrec['userID']; $userID = mysql_real_escape_string($userID);
@@ -36,7 +58,7 @@ if ($CLnum_rows){
 			$sqlUpdate = "UPDATE Contacts SET last_sync_date='". $currentDateTime ."' WHERE id = ". $id ;
 			//echo $sqlUpdate, "<br>", "<br>";
 			$queryUpdate = mysql_query($sqlUpdate) or die('line 82. '.mysql_error());
-*/
+
 		}
 		if ($ContactID <> -1) {
 			$moreRecentSQL = "SELECT last_sync_date FROM users WHERE userID = ". $userID;
@@ -56,5 +78,5 @@ if ($CLnum_rows){
 			//Else -> Do nothing because server is more recent than the client. The getContact will send the more recent data to client. 
 		}
 	}	//end for
-}	//end if ($CLnum_rows)
+}	//end if ($CLnum_rows)*/
 ?>

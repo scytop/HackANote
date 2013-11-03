@@ -26,10 +26,14 @@ SET time_zone = "+00:00";
 -- Structure de la table 'Contacts'
 --
 
-CREATE TABLE IF NOT EXISTS 'users' (
+CREATE TABLE IF NOT EXISTS 'tasks' (
+  'ID' int(9) NOT NULL,
+  'groupID' int(9) NOT NULL,
   'userID' int(9) NOT NULL,
-  'username' text NOT NULL,
-  /*'userGroups' */
+  'taskName' text NOT NULL,
+  'taskDetails' text,
+  'checked' bool NOT NULL,
+  'dueDate' text,
   'last_sync_date' timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  ('userID')
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;

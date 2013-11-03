@@ -9,7 +9,8 @@
  * Status: It works, it update the data
  * ToTest: Use http://www.affairesup.com/webSqlApp/setContactTest.php
 */
-public function getUsergroups($userID) {
+
+public function getGroupusers($groupID) {
 /*$CLnum_rows = 1;
 if ($CLnum_rows){
 	require_once('connections/connDbUP.php');
@@ -19,14 +20,14 @@ if ($CLnum_rows){
 	$clientLastSyncDateUnix= $clientData['info']['lastSyncDate']/1000;	// It gives a 10 digits Unix dateTime format
 	$clientLastSyncDate= date('Y-m-d H:i:s', $clientLastSyncDateUnix);	// to show the date in YYYY-MM-DD HH:MM:SS format (MySQL datetime format). Result: 2007-12-20 14:00:00
 
-	$count = count($clientData['data']['users']);
+	$count = count($clientData['data']['groups']);
 	for ($i=0; $i < $count; $i++) {
-		$newrec = $clientData['data']['users'][$i];  
-		$userID = $newrec['userID']; $userID = mysql_real_escape_string($userID);*/
-	
+		$newrec = $clientData['data']['groups'][$i];  
+		$groupsID = $newrec['groupID']; $groupsID = mysql_real_escape_string($groupsID);*/
+		
 		require_once('connections/connDbUP.php');
-		$groupSQL = "SELECT userGroups FROM users WHERE userID = ". $userID;
-		$groupString = mysql_query($groupSQL) or die(mysql_error());
+		$userSQL = "SELECT userIDs FROM groups WHERE groupsID = ". $groupsID; 
+		$userString = mysql_query($userSQL) or die(mysql_error());
 }
 /*		//if (ID == -1 ) do an INSERT INTO MySQL
 		//if (ID <> -1 AND last_sync_date < clientRecLastSyncDate) do an UPDATE INTO MySQL
@@ -66,7 +67,7 @@ if ($CLnum_rows){
 				$queryUpdate = mysql_query($sqlUpdate) or die('line 100. '.mysql_error());
 			}
 			//Else -> Do nothing because server is more recent than the client. The getContact will send the more recent data to client. 
-		}
+		}*/
 	}	//end for
-}	//end if ($CLnum_rows)*/
+}	//end if ($CLnum_rows)
 ?>
