@@ -16,6 +16,54 @@ if ($CLnum_rows){*/
 		checked, dueDate, last_sync_date) VALUES ".$insert_value;
 }
 
+// USE THIS FUNCTION TO ADD A TASK
+//Group ID and taskDetails arn't needed.
+function createNewTaskSelf($taskName, $taskDetails = "", $userID, $groupID = 0, $dueDate){
+	//used for when you need to create a task for yourself, not within a group
+            //Variables for connecting to your database.
+            //These variable values come from your hosting account.
+            $hostname = "FriendNote.db.11531226.hostedresource.com";
+            $username = "FriendNote";
+            $dbname = "FriendNote";
+
+            //These variable values need to be changed by you before deploying
+            $password = "Dickbutt1!";
+            $usertable = "tasks";        
+            //Connecting to your database
+            mysql_connect($hostname, $username, $password) OR DIE ("Unable to 
+            connect to database! Please try again later.");
+            mysql_select_db($dbname);
+            //generate unique taskID: 9 digit number with a nonzero number at 9th digit
+            //should also be odd.  
+            $query = "SELECT * FROM $usertable";
+            $results = mysql_query($query);
+            $myfield = "taskID"
+            $currentMax = 100000000;
+
+            if($results){
+            	while ($row = mysql_fetch_array($results)){
+            		$tempTaskID = $row["$myfield"];
+            		if($tempTaskID > $currentMax)
+            		{
+            			$currentMax = $tempTaskID;
+            		}
+            	}
+            }
+            $currentMax += 2;
+            $newTaskID = $currentMax;
+            //this ensures a unique taskID
+            //0 group ID represents self
+            setTask($newTaskID, $groupID, $userID, $taskName, $taskDetails, false, $dueDate);
+}
+
+
+
+
+
+
+
+
+
 public function updateTask($taskID, $groupID, $userID, $taskName, $taskDetails, $checked, $dueDate) {
 	require_once('connections/connDbUP.php');
 	$currentDateTime =  date("Y-m-d H:i:s");
