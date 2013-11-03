@@ -37,27 +37,15 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+        FB.init({
+            appId   : '1376897165864285',
+            nativeInterface : CDV.FB,
+            oauth   : true,
+            status  : true, // check login status
+            cookie  : true, // enable cookies to allow the server to access the session
+            xfbml   : true // parse XFBML
+        });
     }
-};
-
-window.fbAsyncInit = function() {
-    FB.init({
-        appId   : '1376897165864285',
-        nativeInterface : CDV.FB,
-        oauth   : true,
-        status  : true, // check login status
-        cookie  : true, // enable cookies to allow the server to access the session
-        xfbml   : true // parse XFBML
-    });
-
 };
 
 function fb_login(){
@@ -65,16 +53,16 @@ function fb_login(){
 
         if (response.authResponse) {
             console.log('Welcome!  Fetching your information.... ');
-            //console.log(response); // dump complete info
             access_token = response.authResponse.accessToken; //get access token
             user_id = response.authResponse.userID; //get FB UID
 
 
             FB.api('/me', function(response) {
-                console.log(response);
                 user_email = response.email; //get user email
-          // you can store this data into your database             
+          // you can store this data into your database
             });
+             
+            $.mobile.changePage("#home");
 
         } else {
             //user hit cancel button
@@ -87,7 +75,7 @@ function fb_login(){
 }
 (function() {
     var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.src = 'http://connect.facebook.net/en_US/all.js';
     e.async = true;
     document.getElementById('fb-root').appendChild(e);
 }());
