@@ -82,6 +82,8 @@
                 FB.getLoginStatus(function(response) {
                     if (response.status.toString().indexOf("connected")>-1) {
                         $.mobile.changePage("#home");
+                    } else {
+                        $.mobile.changePage("#login");
                     }
                 });
                 $("#home").swipeleft(function() {
@@ -89,6 +91,14 @@
                 });
                 $("#page1").swiperight(function() {
                     $.mobile.changePage("#home",{transition:"slide",reverse:true});
+                });
+                              
+                $(".task").click(function() {
+                    if ($(this).hasClass("done")) {
+                        $(this).removeClass("done");
+                    } else {
+                        $(this).addClass("done");
+                    }
                 });
 
             });
