@@ -29,44 +29,49 @@
         <title>Hello World</title>
     </head>
     <body>
-            <div data-role="page" id="home" class="card">
-                <div data-role="content">
-                    <select id="scope">
-                        <option value="day">TODAY</option>
-                        <option value="week">WEEK</option>
-                        <option value="month">MONTH</option>
-                        <option value="all">ALL</option>
-                    </select>
-                    <ul class="tasks">
-                        <li class="task overdue">
-                            <h3>Due 11/1/2013</h3>
-                            <h2>Finish the project</h2>
-                        </li>
-                        <li class="task done">
-                            <h3>Due 11/5/2013</h3>
-                            <h2>Purchase several energy drinks</h2>
-                        </li>
-                        <li class="task">
-                            <h3>Due 11/6/2013</h3>
-                            <h2>Finish the project for real</h2>
-                        </li>
-                    </ul>
-                    <button class="add">ADD NEW TASK</button>
-                </div>
+        <div data-role="page" id="home" class="card">
+            <div data-role="content">
+                <h1>TASKAPP (name subject to change)</h1>
+                <button class="login">LOG IN WITH FACEBOOK</button>
             </div>
-            <div data-role="page" id="page1" class="card">
-                <div data-role="content">
-                    <h1>GROUPS</h1>
-                    <ul class="tasks">
-                        <li class="task overdue">
-                            <h3>Due 11/1/2013</h3>
-                            <h2>Finish the project</h2>
-                        </li>
-                    </ul>
-                    <button class="add">CREATE NEW GROUP</button>
-                </div>
+        </div>
+        <div data-role="page" id="home" class="card">
+            <div data-role="content">
+                <select id="scope">
+                    <option value="day">TODAY</option>
+                    <option value="week">WEEK</option>
+                    <option value="month">MONTH</option>
+                    <option value="all">ALL</option>
+                </select>
+                <ul class="tasks">
+                    <li class="task overdue">
+                        <h3>Due 11/1/2013</h3>
+                        <h2>Finish the project</h2>
+                    </li>
+                    <li class="task done">
+                        <h3>Due 11/5/2013</h3>
+                        <h2>Purchase several energy drinks</h2>
+                    </li>
+                    <li class="task">
+                        <h3>Due 11/6/2013</h3>
+                        <h2>Finish the project for real</h2>
+                    </li>
+                </ul>
+                <button class="add">ADD NEW TASK</button>
             </div>
-
+        </div>
+        <div data-role="page" id="page1" class="card">
+            <div data-role="content">
+                <h1>GROUPS</h1>
+                <ul class="tasks">
+                    <li class="task overdue">
+                        <h3>Due 11/1/2013</h3>
+                        <h2>Finish the project</h2>
+                    </li>
+                </ul>
+                <button class="add">CREATE NEW GROUP</button>
+            </div>
+        </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
