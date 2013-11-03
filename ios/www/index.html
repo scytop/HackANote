@@ -23,38 +23,69 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.min.css" />
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <div class="card">
-                <select id="scope">
-                    <option value="day">TODAY</option>
-                    <option value="week">WEEK</option>
-                    <option value="month">MONTH</option>
-                    <option value="all">ALL</option>
-                </select>
-                <button class="add">+</button>
-                <ul class="tasks">
-                    <li class="task overdue">
-                        <h3>Due 11/1/2013</h3>
-                        <h2>Finish the project</h2>
-                    </li>
-                    <li class="task done">
-                        <h3>Due 11/5/2013</h3>
-                        <h2>Purchase several energy drinks</h2>
-                    </li>
-                    <li class="task">
-                        <h3>Due 11/6/2013</h3>
-                        <h2>Finish the project for real</h2>
-                    </li>
-                </ul>
+
+            <div data-role="page" id="home" class="card">
+                <div data-role="content">
+                    <select id="scope">
+                        <option value="day">TODAY</option>
+                        <option value="week">WEEK</option>
+                        <option value="month">MONTH</option>
+                        <option value="all">ALL</option>
+                    </select>
+                    <button class="add">+</button>
+                    <ul class="tasks">
+                        <li class="task overdue">
+                            <h3>Due 11/1/2013</h3>
+                            <h2>Finish the project</h2>
+                        </li>
+                        <li class="task done">
+                            <h3>Due 11/5/2013</h3>
+                            <h2>Purchase several energy drinks</h2>
+                        </li>
+                        <li class="task">
+                            <h3>Due 11/6/2013</h3>
+                            <h2>Finish the project for real</h2>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+            <div data-role="page" id="page1" class="card">
+                <div data-role="content">
+                    <select id="scope">
+                        <option value="day">TODAY</option>
+                        <option value="week">WEEK</option>
+                        <option value="month">MONTH</option>
+                        <option value="all">ALL</option>
+                    </select>
+                    <button class="add">+</button>
+                    <ul class="tasks">
+                        <li class="task overdue">
+                            <h3>Due 11/1/2013</h3>
+                            <h2>Finish the project</h2>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
+            $(document).ready(function() {
+                $("#home").swipeleft(function() {
+                    $.mobile.changePage("#page1",{transition:"slide"});
+                });
+                $("#page1").swiperight(function() {
+                    $.mobile.changePage("#home",{transition:"slide",reverse:true});
+                });
+
+            });
         </script>
     </body>
 </html>
